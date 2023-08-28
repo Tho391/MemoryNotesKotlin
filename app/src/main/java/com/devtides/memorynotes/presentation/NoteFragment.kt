@@ -91,17 +91,17 @@ class NoteFragment : Fragment() {
         val imm = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(titleView.windowToken, 0)
     }
-
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.note_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    @Suppress("OverrideDeprecatedMigration", "OverrideDeprecatedMigration")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             R.id.deleteNote -> {
                 if(context != null && noteId != 0L) {
-                    AlertDialog.Builder(context!!)
+                    AlertDialog.Builder(requireContext())
                         .setTitle("Delete note")
                         .setMessage("Are you sure you want to delete this note?")
                         .setPositiveButton("Yes") {dialogInterface, i ->
