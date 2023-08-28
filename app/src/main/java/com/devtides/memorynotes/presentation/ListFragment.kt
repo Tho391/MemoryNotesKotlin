@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devtides.memorynotes.databinding.FragmentListBinding
 import com.devtides.memorynotes.framework.ListViewModel
@@ -56,7 +56,7 @@ class ListFragment : Fragment(), ListAction {
 
     private fun goToNoteDetails(id: Long = 0L) {
         val action = ListFragmentDirections.actionGoToNote(id)
-        Navigation.findNavController(binding.notesListView).navigate(action)
+        findNavController().navigate(action)
     }
 
     override fun onClick(id: Long) {

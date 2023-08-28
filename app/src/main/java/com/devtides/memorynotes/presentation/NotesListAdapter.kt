@@ -1,15 +1,12 @@
 package com.devtides.memorynotes.presentation
 
-import android.text.Layout
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devtides.core.data.Note
-import com.devtides.memorynotes.R
-import kotlinx.android.synthetic.main.item_note.view.*
+import com.devtides.memorynotes.databinding.ItemNoteBinding
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
 
 class NotesListAdapter(var notes: ArrayList<Note>, val actions: ListAction): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
 
@@ -20,7 +17,7 @@ class NotesListAdapter(var notes: ArrayList<Note>, val actions: ListAction): Rec
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = NoteViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false)
+        ItemNoteBinding.inflate(LayoutInflater.from(parent.context),parent,false)
     )
 
     override fun getItemCount() = notes.size
@@ -29,13 +26,13 @@ class NotesListAdapter(var notes: ArrayList<Note>, val actions: ListAction): Rec
         holder.bind(notes[position])
     }
 
-    inner class NoteViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class NoteViewHolder(binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
 
-        private val layout = view.noteLayout
-        private val noteTitle = view.title
-        private val noteContent = view.content
-        private val noteDate = view.date
-        private val noteWords = view.wordCount
+        private val layout = binding.noteLayout
+        private val noteTitle = binding.title
+        private val noteContent = binding.content
+        private val noteDate = binding.date
+        private val noteWords = binding.wordCount
 
         fun bind(note: Note) {
             noteTitle.text = note.title

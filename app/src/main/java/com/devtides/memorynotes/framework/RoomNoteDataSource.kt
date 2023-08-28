@@ -7,7 +7,7 @@ import com.devtides.memorynotes.framework.db.DatabaseService
 import com.devtides.memorynotes.framework.db.NoteEntity
 
 class RoomNoteDataSource(context: Context): NoteDataSource {
-    val noteDao = DatabaseService.getInstance(context).noteDao()
+    private val noteDao = DatabaseService.getInstance(context).noteDao()
 
     override suspend fun add(note: Note) = noteDao.addNoteEntity(NoteEntity.fromNote(note))
 
